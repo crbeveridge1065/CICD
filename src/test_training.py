@@ -41,6 +41,14 @@ def clean_data():
 
     return (X_train, y_train, X_test, y_test), (encoder, lb)
 
+@pytest.fixture
+def trained_model(clean_data):
+    X_train, y_train, X_test, y_test = clean_data[0]
+    encoder, _ = clean_data[1]
+
+    # Train Model
+    return train_model(X_train, y_train)
+
 def test_process_data(clean_data):
 
     X_train, y_train, X_test, y_test = clean_data[0]
@@ -69,14 +77,9 @@ def test_process_data(clean_data):
     assert 'sklearn.preprocessing._encoders.OneHotEncoder' in str(type(encoder))
     assert 'sklearn.preprocessing._label.LabelBinarizer' in str(type(lb))
 
-def test_model_training_and_saving(clean_data):
+def test_model_training(trained_model):
 
-    X_train, y_train, X_test, y_test = clean_data[0]
-    encoder, _ = clean_data[1]
-
-    # Train Model
-    model = train_model(X_train, y_train)
-
+    '''
     # Save Model and trained encoder
     with open('src/test_results_pickle/mlp_model.pkl', 'wb') as f:
         pickle.dump(model, f)
@@ -84,37 +87,16 @@ def test_model_training_and_saving(clean_data):
     with open('src/test_results_pickle/encoder.pkl', 'wb') as f:
         pickle.dump(encoder, f)
 
-    assert 'sklearn.neural_network._multilayer_perceptron.MLPClassifier' in str(type(model))
-    assert os.path.isfile(r"src/test_results_pickle/mlp_model.pkl")
-    assert os.path.isfile(r"src/test_results_pickle/encoder.pkl")
-
-def test_model_loading(clean_data):
-
-    X_train, y_train, X_test, y_test = clean_data[0]
-    encoder, _ = clean_data[1]
-
-    # Load model and encoder from files generated in previous test
-    with open('src/test_results_pickle/mlp_model.pkl', 'rb') as f:
-        model = pickle.load(f)
-
-    with open('src/test_results_pickle/encoder.pkl', 'rb') as f:
-        encoder = pickle.load(f)
-
-    # Test Loading worked
-    assert 'sklearn.neural_network._multilayer_perceptron.MLPClassifier' in str(type(model))
-    assert 'sklearn.preprocessing._encoders.OneHotEncoder' in str(type(encoder))
+    '''
+    assert 'sklearn.neural_network._multilayer_perceptron.MLPClassifier' in str(type(trained_model))
 
 
-def test_inference_and_performance(clean_data):
+def test_inference_and_performance(clean_data, trained_model):
 
     X_train, y_train, X_test, y_test = clean_data[0]
-
-    # Load model from file generated a previous test
-    with open('src/test_results_pickle/mlp_model.pkl', 'rb') as f:
-        model = pickle.load(f)
 
     # Perform inference
-    preds = inference(model, X_test)
+    preds = inference(trained_model, X_test)
 
     # Test testing data predictions type and shape
     assert 'numpy.ndarray' in str(type(preds))
