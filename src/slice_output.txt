@@ -1,0 +1,46 @@
+
+Class: workclass
+State-gov precision: 0.7692
+State-gov recall: 0.1538
+State-gov fbeta: 0.2564
+
+
+Self-emp-not-inc precision: 0.6061
+Self-emp-not-inc recall: 0.3974
+Self-emp-not-inc fbeta: 0.4800
+
+
+Private precision: 0.8317
+Private recall: 0.1759
+Private fbeta: 0.2904
+
+
+Federal-gov precision: 0.3698
+Federal-gov recall: 1.0000
+Federal-gov fbeta: 0.5399
+
+
+Local-gov precision: 0.6341
+Local-gov recall: 0.2203
+Local-gov fbeta: 0.3270
+
+
+? precision: 0.5000
+? recall: 0.0263
+? fbeta: 0.0500
+
+
+Self-emp-inc precision: 0.9697
+Self-emp-inc recall: 0.2481
+Self-emp-inc fbeta: 0.3951
+
+
+Without-pay precision: 1.0000
+Without-pay recall: 1.0000
+Without-pay fbeta: 1.0000
+
+
+Never-worked precision: 1.0000
+Never-worked recall: 1.0000
+Never-worked fbeta: 1.0000
+

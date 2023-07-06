@@ -45,4 +45,7 @@ with open('model/mlp_model.pkl','wb') as f:
 with open('model/encoder.pkl','wb') as f:
     pickle.dump(encoder,f)
 
+with open('model/lb.pkl', 'wb') as f:
+    pickle.dump(lb, f)
+
 print(compute_model_metrics(y_test, inference(model, X_test)))
