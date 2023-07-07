@@ -6,5 +6,6 @@ requests
 fastapi==0.63.0
 uvicorn
 gunicorn
+pickle==4.0.0
 httpx
 pydantic==1.10.9
