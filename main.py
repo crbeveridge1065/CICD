@@ -55,13 +55,14 @@ app = FastAPI()
 
 # Load the model and encoder and lb
 model_filename = 'model/mlp_model.pkl'
-model = pickle.load(open(model_filename, 'rb'))
+with open(model_filename, 'r') as f1:
+    model = pickle.load(f1)
 
 encoder_filename = 'model/encoder.pkl'
-encoder = pickle.load(open(encoder_filename, 'rb'))
+encoder = pickle.load(open(encoder_filename, 'r'))
 
 lb_filename = 'model/encoder.pkl'
-lb = pickle.load(open(lb_filename, 'rb'))
+lb = pickle.load(open(lb_filename, 'r'))
 
 # Features that are categorical
 cat_features = [
