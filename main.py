@@ -95,8 +95,8 @@ input_features = [
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def say_hello():
-    return {"greeting": "Hello!, this model is to be used to predict whether a person's income exceeds $50K/yr. \
-                        An inference value of 0 indicates <=50k/yr, and a value of 1 indicates >50k/yr."}
+    return {"greeting": "Hello!, this model is to be used to predict whether a person's income exceeds  \
+                        $50K/yr. An inference value of 0 indicates <=50k/yr, and a value of 1 indicates >50k/yr."}
 
 @app.post("/infer/")
 async def create_item(
@@ -121,4 +121,4 @@ async def create_item(
     # Process the data with same encoder and lb as used in training
     X_item, _, encoder, lb = process_data(df, cat_features, training=False, encoder=encoder, lb=lb)
 
-    return {"inference:": str(inference(model, X_item)[0])}
+    return {"inference": str(inference(model, X_item)[0])}
